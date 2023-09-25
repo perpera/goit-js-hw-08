@@ -25,17 +25,20 @@ window.addEventListener('load', () => {
 emailInput.addEventListener('input', saveInputData);
 messageInput.addEventListener('input', saveInputData);
 
-document.addEventListener('submit', event => {
+fbForm.addEventListener('submit', event => {
   event.preventDefault();
-  localStorage.removeItem(storageKey);
 
   const inputData = {
     email: emailInput.value,
     message: messageInput.value,
   };
 
-  console.log(inputData);
-
-  emailInput.value = '';
-  messageInput.value = '';
+  if (inputData.email && inputData.message) {
+    console.log(inputData);
+    localStorage.removeItem(storageKey);
+    emailInput.value = '';
+    messageInput.value = '';
+  } else {
+    alert('All fields must be filled in.');
+  }
 });
